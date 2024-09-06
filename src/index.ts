@@ -1,11 +1,12 @@
-import express from 'express';
+import express, { json } from 'express';
+import { createUser } from './controllers/User/userController';
 
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(json());
+
+app.post('/register', createUser);
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
