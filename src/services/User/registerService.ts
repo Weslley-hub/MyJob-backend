@@ -17,6 +17,6 @@ export async function registerUser(name: string, email: string, password: string
     });
     return user;
   } catch (error) {
-    throw new Error('User registration failed');
+    throw new Error('Error no Registro de Usuario');
   }
 }

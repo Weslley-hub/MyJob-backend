@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { registerUser } from '../../services/User/userService';
+import { registerUser } from '../../services/User/registerService';
 
 export async function createUser(req: Request, res: Response) {
   const { name, email, password } = req.body;
 
   if (!email || !password || !name) {
-    return res.status(400).json({ error: 'Email and password are required' });
+    return res.status(400).json({ error: 'Verifique se preencheu todos os dados' });
   }
 
   try {
