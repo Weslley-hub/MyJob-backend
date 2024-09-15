@@ -6,7 +6,6 @@ import authRoutes from './authRoutes';
 const router = express.Router();
 
 router.use('/auths', authRoutes);
-
 router.use('/categories', categoryRoutes);
 router.use('/users', userRoutes);
 

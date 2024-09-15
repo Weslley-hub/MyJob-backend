@@ -63,7 +63,7 @@ export async function fetchUsers(req: Request, res: Response) {
     const users = await getUsersAll();
     res.status(200).json({ users });
   } catch (error: any) {
-    console.error('Erro ao buscar categorias:', error);
-    res.status(500).json({ error: error.message || 'Erro interno ao buscar categorias' });
+    console.error('Erro ao buscar usuarios:', error);
+    res.status(500).json({ error: error.message || 'Erro interno ao buscar usuarios' });
   }
 }
