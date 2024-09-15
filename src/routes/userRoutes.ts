@@ -6,7 +6,7 @@ import { getUsersAll } from '../services/User/listService';
 const router = express.Router();
 
 router.post('/register', createUser);
-router.post('/users', getUsersAll);
+router.post('/list', getUsersAll);
 
 
 export default router;
