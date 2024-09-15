@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 const saltRounds = 10;
 
-export async function registerUser(name: string, email: string, password: string) {
+export async function registerUser(name: string, email: string, password: string, categoriaId?: number) {
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
   try {
@@ -13,7 +13,8 @@ export async function registerUser(name: string, email: string, password: string
         name,
         email,
         password: hashedPassword,
-      },
+        categoriaId: categoriaId || undefined
+      }
     });
     return user;
   } catch (error) {
