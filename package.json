@@ -8,7 +8,9 @@
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "dev": "ts-node-dev src/index.ts",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "seed:db": "npx ts-node prisma/seeds/seed.ts",
+    "migrate:db": "npx prisma migrate dev"
   },
   "author": "",
   "license": "ISC",
