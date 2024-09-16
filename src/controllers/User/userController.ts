@@ -58,12 +58,12 @@ export async function createUser(req: Request, res: Response) {
   }
 }
 
-export async function fetchUsers(req: Request, res: Response) {
+export async function getUsers(req: Request, res: Response) {
   try {
     const users = await getUsersAll();
     res.status(200).json({ users });
   } catch (error: any) {
-    console.error('Erro ao buscar usuarios:', error);
-    res.status(500).json({ error: error.message || 'Erro interno ao buscar usuarios' });
+    console.error('Erro ao buscar usuários:', error);
+    res.status(500).json({ error: error.message || 'Erro interno ao buscar usuários' });
   }
 }

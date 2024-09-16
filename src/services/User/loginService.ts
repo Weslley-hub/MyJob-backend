@@ -7,13 +7,7 @@ const jwtSecret = process.env.JWT_SECRET || ''
 
 export async function authenticateUser(email: string, password: string) {
   const user = await prisma.user.findUnique({
-    where: { email },
-    select: { 
-      id: true,
-      name: true,
-      email: true,
-      password: true
-    },
+    where: { email }
   });
 
   if (!user) {
