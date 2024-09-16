@@ -1,5 +1,6 @@
 import express from 'express';
-import { createExperience, deleteExperience, getExperiences } from 'src/controllers/ProfessionalExperience/professionalExperience';
+import { createExperience, getExperiences, deleteExperience } from '../controllers/ProfessionalExperience/professionalExperience';
+
 
 const router = express.Router();
 

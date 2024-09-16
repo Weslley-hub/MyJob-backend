@@ -1,5 +1,6 @@
 import express from 'express';
-import { createEducationHandler, getEducationsHandler, deleteEducationHandler } from 'src/controllers/Education/educationController';
+import { createEducationHandler, getEducationsHandler, deleteEducationHandler } from '../controllers/Education/educationController';
+
 
 const router = express.Router();
 

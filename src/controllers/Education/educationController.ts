@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { deleteEducation } from 'src/services/Education/delete';
-import { getEducations } from 'src/services/Education/list';
-import { createEducation } from 'src/services/User/registerEducation';
+import { deleteEducation } from '../../services/Education/delete';
+import { getEducations } from '../../services/Education/list';
+import { createEducation } from '../../services/User/registerEducation';
 
 export async function createEducationHandler(req: Request, res: Response) {
   const { userId, institution, degree, startDate, endDate } = req.body;

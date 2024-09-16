@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { deleteProfessionalExperience } from 'src/services/ProfessionalExperience/deleteService';
-import { getProfessionalExperiences } from 'src/services/ProfessionalExperience/getService';
-import { createProfessionalExperience } from 'src/services/ProfessionalExperience/registerService';
+import { deleteProfessionalExperience } from '../../services/ProfessionalExperience/deleteService';
+import { getProfessionalExperiences } from '../../services/ProfessionalExperience/getService';
+import { createProfessionalExperience } from '../../services/ProfessionalExperience/registerService';
 
 export async function createExperience(req: Request, res: Response) {
   const { userId, company, role, startDate, endDate } = req.body;
