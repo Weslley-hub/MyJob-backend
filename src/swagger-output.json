@@ -367,6 +367,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -387,6 +390,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -400,6 +406,54 @@
           {
             "name": "userId",
             "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/graph/distance/{startUserId}/{targetUserId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "startUserId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "targetUserId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/graph/recommendations/{userId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
