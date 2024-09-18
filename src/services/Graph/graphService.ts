@@ -53,22 +53,51 @@ export const calculateDistanceBFS = async (startUserId: number, targetUserId: nu
 
 // Sugere amizades com base na distância mínima
 export const recommendFriendsBasedOnDistance = async (userId: number): Promise<any[]> => {
-  // Lista todos os usuários
-  const allUsers = await prisma.user.findMany();
+  // Busca todos os usuários, exceto o próprio
+  const allUsers = await prisma.user.findMany({
+    where: {
+      NOT: { id: userId },
+    },
+  });
+
+  // Busca as amizades já existentes para o usuário
+  const existingFriends = await prisma.friendship.findMany({
+    where: {
+      OR: [
+        { userId: userId, status: 'ACCEPTED' },
+        { friendId: userId, status: 'ACCEPTED' },
+      ]
+    }
+  });
+
+  // Cria um Set para armazenar IDs de amigos existentes
+  const existingFriendIds = new Set<number>();
+  existingFriends.forEach(friendship => {
+    if (friendship.userId === userId) {
+      existingFriendIds.add(friendship.friendId);
+    } else {
+      existingFriendIds.add(friendship.userId);
+    }
+  });
+
   const recommendations: { userId: number, distance: number }[] = [];
 
+  // Para cada usuário, calcula a distância se não for amigo existente
   for (const user of allUsers) {
-    if (user.id !== userId) {
+    if (!existingFriendIds.has(user.id)) {
       const distance = await calculateDistanceBFS(userId, user.id);
-      if (distance !== -1) {
+
+      // Adiciona na lista de recomendação se a distância for 1 ou 2
+      if (distance <= 2) {
         recommendations.push({ userId: user.id, distance });
       }
     }
   }
 
-  // Ordena as recomendações com base na distância
+  // Ordena as recomendações com base na distância (menor primeiro)
   recommendations.sort((a, b) => a.distance - b.distance);
 
   // Retorna os usuários recomendados com base na menor distância
   return recommendations;
 };
+
