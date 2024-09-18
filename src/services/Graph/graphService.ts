@@ -6,6 +6,10 @@ const prisma = new PrismaClient();
 // Calcula a distância mínima entre dois usuários usando BFS
 export const calculateDistanceBFS = async (startUserId: number, targetUserId: number): Promise<number> => {
   // Cria um mapa para armazenar as distâncias
+  if (startUserId === targetUserId) {
+    return 0; // Nível 0: o próprio usuário
+  }
+
   const distances = new Map<number, number>();
   const queue: number[] = [startUserId];
   
@@ -43,8 +47,8 @@ export const calculateDistanceBFS = async (startUserId: number, targetUserId: nu
     }
   }
 
-  // Retorna -1 se não houver caminho entre os usuários
-  return -1;
+  // Retorna 3 se não houver caminho entre os usuários
+  return 3;
 };
 
 // Sugere amizades com base na distância mínima
