@@ -10,17 +10,21 @@
     "dev": "ts-node-dev src/index.ts",
     "clean": "rm -rf dist",
     "seed:db": "npx ts-node prisma/seeds/seed.ts",
-    "migrate:db": "npx prisma migrate dev"
+    "migrate:db": "npx prisma migrate dev",
+    "swagger": "ts-node src/swagger-autogen.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.19.1",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
-    "myjobs": "file:"
+    "myjobs": "file:",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -29,10 +33,13 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^22.5.4",
     "@types/pacote": "^11.1.8",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
     "@typescript-eslint/eslint-plugin": "^8.4.0",
     "@typescript-eslint/parser": "^8.4.0",
     "eslint": "^9.10.0",
     "prisma": "^5.19.1",
+    "swagger-autogen": "^2.23.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
