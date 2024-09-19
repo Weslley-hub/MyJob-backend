@@ -80,7 +80,7 @@ export const recommendFriendsBasedOnDistance = async (userId: number): Promise<a
     }
   });
 
-  const recommendations: { userId: number, distance: number }[] = [];
+  const recommendations: { user: any, distance: number }[] = [];
 
   // Para cada usuário, calcula a distância se não for amigo existente
   for (const user of allUsers) {
@@ -89,7 +89,37 @@ export const recommendFriendsBasedOnDistance = async (userId: number): Promise<a
 
       // Adiciona na lista de recomendação se a distância for 1 ou 2
       if (distance <= 2) {
-        recommendations.push({ userId: user.id, distance });
+        // Busca as informações completas do usuário, exceto a senha
+        const recommendedUser = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            description: true,
+            categoria: {
+              select: {
+                nome: true,
+              },
+            },
+            professionalExperiences: {
+              select: {
+                company: true,
+                role: true,
+              },
+            },
+            educations: {
+              select: {
+                institution: true,
+                degree: true,
+              },
+            },
+          },
+        });
+
+        if (recommendedUser) {
+          recommendations.push({ user: recommendedUser, distance });
+        }
       }
     }
   }
@@ -100,4 +130,3 @@ export const recommendFriendsBasedOnDistance = async (userId: number): Promise<a
   // Retorna os usuários recomendados com base na menor distância
   return recommendations;
 };
-

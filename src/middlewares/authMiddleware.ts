@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
 const jwtSecret = process.env.JWT_SECRET || '';
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
